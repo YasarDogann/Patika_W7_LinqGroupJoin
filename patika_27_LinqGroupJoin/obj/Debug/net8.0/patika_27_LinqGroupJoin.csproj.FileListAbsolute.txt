@@ -1,0 +1,14 @@
+C:\Users\yasar\source\repos\Patika+\Week7\patika_27_LinqGroupJoin\patika_27_LinqGroupJoin\bin\Debug\net8.0\patika_27_LinqGroupJoin.exe
+C:\Users\yasar\source\repos\Patika+\Week7\patika_27_LinqGroupJoin\patika_27_LinqGroupJoin\bin\Debug\net8.0\patika_27_LinqGroupJoin.deps.json
+C:\Users\yasar\source\repos\Patika+\Week7\patika_27_LinqGroupJoin\patika_27_LinqGroupJoin\bin\Debug\net8.0\patika_27_LinqGroupJoin.runtimeconfig.json
+C:\Users\yasar\source\repos\Patika+\Week7\patika_27_LinqGroupJoin\patika_27_LinqGroupJoin\bin\Debug\net8.0\patika_27_LinqGroupJoin.dll
+C:\Users\yasar\source\repos\Patika+\Week7\patika_27_LinqGroupJoin\patika_27_LinqGroupJoin\bin\Debug\net8.0\patika_27_LinqGroupJoin.pdb
+C:\Users\yasar\source\repos\Patika+\Week7\patika_27_LinqGroupJoin\patika_27_LinqGroupJoin\obj\Debug\net8.0\patika_27_LinqGroupJoin.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\yasar\source\repos\Patika+\Week7\patika_27_LinqGroupJoin\patika_27_LinqGroupJoin\obj\Debug\net8.0\patika_27_LinqGroupJoin.AssemblyInfoInputs.cache
+C:\Users\yasar\source\repos\Patika+\Week7\patika_27_LinqGroupJoin\patika_27_LinqGroupJoin\obj\Debug\net8.0\patika_27_LinqGroupJoin.AssemblyInfo.cs
+C:\Users\yasar\source\repos\Patika+\Week7\patika_27_LinqGroupJoin\patika_27_LinqGroupJoin\obj\Debug\net8.0\patika_27_LinqGroupJoin.csproj.CoreCompileInputs.cache
+C:\Users\yasar\source\repos\Patika+\Week7\patika_27_LinqGroupJoin\patika_27_LinqGroupJoin\obj\Debug\net8.0\patika_27_LinqGroupJoin.dll
+C:\Users\yasar\source\repos\Patika+\Week7\patika_27_LinqGroupJoin\patika_27_LinqGroupJoin\obj\Debug\net8.0\refint\patika_27_LinqGroupJoin.dll
+C:\Users\yasar\source\repos\Patika+\Week7\patika_27_LinqGroupJoin\patika_27_LinqGroupJoin\obj\Debug\net8.0\patika_27_LinqGroupJoin.pdb
+C:\Users\yasar\source\repos\Patika+\Week7\patika_27_LinqGroupJoin\patika_27_LinqGroupJoin\obj\Debug\net8.0\patika_27_LinqGroupJoin.genruntimeconfig.cache
+C:\Users\yasar\source\repos\Patika+\Week7\patika_27_LinqGroupJoin\patika_27_LinqGroupJoin\obj\Debug\net8.0\ref\patika_27_LinqGroupJoin.dll

@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "patika_27_LinqGroupJoin/1.0.0": {
+        "runtime": {
+          "patika_27_LinqGroupJoin.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "patika_27_LinqGroupJoin/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
