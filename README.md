@@ -31,128 +31,97 @@ Bir okul veritabanı oluşturuyorsunuz ve aşağıdaki iki tablonun verilerini k
 
    
 
-Görev:
+Aşağıdaki görevleri yerine getirin:
 
-1. Tabloları Tanımlayın:
+1. Tabloyu Tanımlayın:
 
-   `Author` ve `Book` adında iki sınıf oluşturun ve yukarıdaki tablo yapılarını bu sınıflara uygun şekilde tanımlayın.
+   `Student` ve `Class` isimli iki sınıf oluşturun. Her bir sınıf için uygun veri türlerini kullanarak C# sınıflarını tanımlayın.
 
-2. Verileri Ekleyin:
+2. Veri Listelemesi:
 
-   Her iki tabloya da örnek veriler ekleyin. En az 3 yazar ve 4 kitap ekleyin.
-
-3. LINQ Sorgusu Yazın:
-
-   Kitapları ve yazarları birleştiren bir LINQ sorgusu oluşturun. Bu sorgu, her kitabın başlığını ve yazarının adını içermelidir.
-
-4. Sonuçları Yazdırın:
-
-   Oluşturduğunuz LINQ sorgusunun sonucunu ekrana yazdırın. Her kitabın başlığı ve yazarının adını içeren bilgileri göstermelisiniz.
-
-Örnek Veriler:
-![cX1xAyv-linqAdvancedYazarKitap](https://github.com/user-attachments/assets/8149477f-ab9f-4d74-afa0-7a0fe80499af)
-
-Notlar:
-
- - LINQ sorgusunda join işlemini kullanarak iki tabloyu birleştirin.
-
- - Sonuçları ekrana yazdırırken kitap başlığını ve yazarın adını göstermek için uygun bir format kullanın.
+   ![fqZCLaJ-xxxxxxxxxxx](https://github.com/user-attachments/assets/e4fa8699-8b04-446a-afe9-dea8e240bc1b)
 
 
+3. LINQ Sorgusu:
+
+   Öğrenciler ve sınıflar arasında `group join` işlemi yaparak, her sınıfın altında o sınıfa ait olan öğrencilerin listelendiği bir sonuç elde edin. Sonuçları sınıf adıyla birlikte, o sınıfa ait öğrencilerin isimleriyle birlikte ekrana yazdıran bir LINQ sorgusu yazın.
 
 
-
-## Kod: Authors ve Books Class'ı
+## Kod
 ```csharp
-public class Authors
-{
-    public int AuthorId { get; set; }
-    public string Name { get; set; }
-}
-
-public class Books
-{
-    public int BookId { get; set; }
-    public string Title { get; set; }
-    public int AuthorId { get; set; }
-}
-```
-
-
-## Kod: Main Class
-
-```csharp
-static void Main(string[] args)
-{
-    // Kitap Lİstesi
-    List<Books> books = new List<Books>
+    static void Main(string[] args)
     {
-        new Books {BookId = 1, Title = "Kar", AuthorId = 1},
-        new Books {BookId = 2, Title = "İstanbul", AuthorId = 1},
-        new Books {BookId = 3, Title = "10 Minutes 38 Seconds in This Strange World", AuthorId = 2},
-        new Books {BookId = 4, Title = "Beyoğlu Raspodisi", AuthorId = 3}
-    };
+        // Yapıcı method'u olan class'dan list tanımlama
+        List<Students> students = new List<Students>
+        {
+            new Students(1, "Ali", 1),
+            new Students(2, "Ayşe",2),
+            new Students(3, "Mehmet",1),
+            new Students(4, "Fatma",3),
+            new Students(5, "Ahmet",2),
+        };
+
+        // Yapıcı methodu olmayan class'dan list tanımlama
+        List<Classes> classes = new List<Classes>()
+        {
+            new Classes{ClassId = 1, ClassName ="Matematik"},
+            new Classes{ClassId = 2, ClassName ="Türkçe"},
+            new Classes{ClassId = 3, ClassName ="Kimya"},
+        };
+
+        var query = classes.GroupJoin(students,
+                                      classes => classes.ClassId,
+                                      student => student.ClassId,
+                                      (classes,student) => new
+                                      {
+                                          ClassName = classes.ClassName,
+                                          StudentName = student.Select(student => student.StudentName)
+                                      });
 
 
-    // Yazar Listesi
-    List<Authors> authors = new List<Authors>
+        foreach(var c in query)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Sınıf: "+c.ClassName);
+            Console.ResetColor();
+            foreach(var s in c.StudentName)
+            {
+                Console.WriteLine("Öğrenci: " + s);
+            }
+            Console.WriteLine("*******************\r\n");
+
+        }
+
+    }
+
+
+    // Student Class
+    public class Students
     {
-        new Authors {AuthorId = 1, Name= "Orhan Pamuk" },
-        new Authors {AuthorId = 2, Name= "Elif Şafak" },
-        new Authors {AuthorId = 3, Name= "Ahmet Ümit" }
-    };
+        public int StudentId { get; set; }
+        public string StudentName { get; set; }
+        public int ClassId { get; set; }
 
-    #region Yöntem1: Method  Sözdizimi
+        public Students(int studentId, string studentName, int classId)
+        {
+            StudentId = studentId;
+            StudentName = studentName;
+            ClassId = classId;
+        }
+    }
 
-    var query = authors.Join(books,
-                        authors => authors.AuthorId,
-                        books => books.AuthorId,
-                        (authors, books) => new
-                        {
-                            BookName = books.Title,
-                            AuthorName = authors.Name
-                        }
-                        );
-    #endregion
-
-
-    #region Yöntem2: Sorgu Sözdizimi
-    var query2 = from author in authors
-                join book in books on author.AuthorId equals book.AuthorId
-                select new
-                {
-                    BookName = book.Title,
-                    AuthorName = author.Name,
-                };
-
-    #endregion
-
-    foreach (var book in query2)
+    // Classes Class
+    public class Classes
     {
-        // "Kitap Adı:" kısmını renklendir
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.Write("Kitap Adı: ");
-
-        // Kitap adını farklı renkte yazdır
-        Console.ForegroundColor = ConsoleColor.White;
-        Console.Write($"{book.BookName.PadRight(20)} ");
-
-        // "Yazar Adı:" kısmını renklendir
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.Write("Yazar Adı: ");
-
-        // Yazar adını farklı renkte yazdır
-        Console.ForegroundColor = ConsoleColor.White;
-        Console.WriteLine(book.AuthorName);
-
-        // Renkleri varsayılana döndür
-        Console.ResetColor();
+        public int ClassId { get; set; }
+        public string ClassName { get; set; }
     }
 }
 ```
 
 ## Uygulama Çıktısı: 
-![resim](https://github.com/user-attachments/assets/1b697d37-0ef6-4a1a-a60f-fe0d8e344fc2)
+![resim](https://github.com/user-attachments/assets/c9e6a924-8130-437f-8cde-30404ea1f272)
+
 
 
 
